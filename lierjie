@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]>
+<!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+    
+    <!-- Website Title & Description -->
+    <title>终于上线了</title>
+    <meta name="description" content="n1n9的服务器用起来了">
+    
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="shortcut icon" href="favicon.ico" />
+    
+    <!-- This script prevents links from opening in Mobile Safari. https://gist.github.com/1042026 -->
+    <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
+    
+    <!-- Included CSS Files -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylesheets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/jquery.vegas.css" />
+    <link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900,200italic,100italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Archivo+Black' rel='stylesheet' type='text/css'>
+    
+    <!-- Included JS Files -->
+	<script src="javascripts/modernizr.js"></script>
+	<script src="javascripts/jquery.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.vegas.js"></script>
+    
+	<script type="text/javascript">
+		$( function() {
+			$.vegas('slideshow', {
+				backgrounds:[
+					{ src:'images/backgrounds/1.jpg', fade:1500 }
+				],
+				loading:false
+			})('overlay', {
+				src:'images/overlays/05.png',
+				opacity:'0.8'
+			});
+		});
+    </script>
+    
+    <!-- Hook up the Loader & Animations -->
+	<script type="text/javascript">
+		$(window).load(function() {
+			$("#loading").fadeOut("1000", function() {
+			// Animation complete
+				$('#loading img').css("display","none");
+				$('#loading').css("display","none");
+				$('#loading').css("background","none");
+				$('#loading').css("width","0");
+				$('#loading').css("height","0");
+		  	});
+			$('h1').delay(1000).animate({marginTop:'0px',opacity: '1' }, { duration: 544});
+			$('.photo-background').delay(1200).animate({marginTop:'0px',opacity: '1' }, { duration: 544});
+			$('.video-background').delay(1400).animate({marginTop:'0px',opacity: '1' }, { duration: 544});
+		});
+	</script>
+    
+</head>
+<body>
+
+	<!-- Loader -->
+	<div id="loading">
+    	<img src="images/loader.gif" alt="Website Loader"/>
+    </div>
+    
+    <div class="pattern-container"></div>
+    
+    <div id="wrapper">
+        <div class="website-content">
+        	<h1>ningff.cn<br><span>Niubility</span></h1>
+            <div class="photo-background">
+            	<a href="slideshow/index.html">
+    				<img src="images/photo-background.jpg" alt="Photo Background"/>
+                </a>
+            </div>
+            <div class="video-background">
+            	<a href="video/index.html">
+    				<img src="images/video-background.jpg" alt="Video Background"/>
+                </a>
+            </div>
+        </div>
+    </div>
+  
+</body>
+</html>
