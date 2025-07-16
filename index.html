@@ -1,102 +1,1036 @@
 <!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]>
-<!--><html class="no-js" lang="en"> <!--<![endif]-->
+<html lang="zh-CN">
 <head>
-	<meta charset="utf-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车险在线视频理赔平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Website Title & Description -->
-    <title>终于上线了</title>
-    <meta name="description" content="n1n9的服务器用起来了">
-    
-    <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width" />
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-touch-fullscreen" content="yes"/>
-    
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="shortcut icon" href="favicon.ico" />
-    
-    <!-- This script prevents links from opening in Mobile Safari. https://gist.github.com/1042026 -->
-    <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
-    
-    <!-- Included CSS Files -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="stylesheets/normalize.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/jquery.vegas.css" />
-    <link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900,200italic,100italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Archivo+Black' rel='stylesheet' type='text/css'>
-    
-    <!-- Included JS Files -->
-	<script src="javascripts/modernizr.js"></script>
-	<script src="javascripts/jquery.js"></script>
-    <script type="text/javascript" src="javascripts/jquery.vegas.js"></script>
-    
-	<script type="text/javascript">
-		$( function() {
-			$.vegas('slideshow', {
-				backgrounds:[
-					{ src:'images/backgrounds/1.jpg', fade:1500 }
-				],
-				loading:false
-			})('overlay', {
-				src:'images/overlays/05.png',
-				opacity:'0.8'
-			});
-		});
+    <!-- Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36D399',
+                        danger: '#F87272',
+                        warning: '#FBBD23',
+                        dark: '#333333',
+                        light: '#F9FAFB'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
     </script>
     
-    <!-- Hook up the Loader & Animations -->
-	<script type="text/javascript">
-		$(window).load(function() {
-			$("#loading").fadeOut("1000", function() {
-			// Animation complete
-				$('#loading img').css("display","none");
-				$('#loading').css("display","none");
-				$('#loading').css("background","none");
-				$('#loading').css("width","0");
-				$('#loading').css("height","0");
-		  	});
-			$('h1').delay(1000).animate({marginTop:'0px',opacity: '1' }, { duration: 544});
-			$('.photo-background').delay(1200).animate({marginTop:'0px',opacity: '1' }, { duration: 544});
-			$('.video-background').delay(1400).animate({marginTop:'0px',opacity: '1' }, { duration: 544});
-		});
-	</script>
-    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-transform-opacity {
+                transition-property: transform, opacity;
+            }
+        }
+    </style>
 </head>
-<body>
-
-	<!-- Loader -->
-	<div id="loading">
-    	<img src="images/loader.gif" alt="Website Loader"/>
-    </div>
-    
-    <div class="pattern-container"></div>
-    
-    <div id="wrapper">
-        <div class="website-content">
-        	<h1>ningff.cn<br><span>Niubility</span></h1>
-            <div class="photo-background">
-            	<a href="slideshow/index.html">
-    				<img src="images/photo-background.jpg" alt="Photo Background"/>
-                </a>
-            </div>
-            <div class="video-background">
-            	<a href="video/index.html">
-    				<img src="images/video-background.jpg" alt="Video Background"/>
-                </a>
+<body class="font-inter bg-gray-50 text-dark min-h-screen flex flex-col">
+    <!-- 顶部导航栏 -->
+    <header class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fa fa-car text-primary text-2xl mr-2"></i>
+                        <span class="font-bold text-xl text-primary">车险理赔通</span>
+                    </div>
+                    <nav class="hidden md:ml-10 md:flex space-x-8">
+                        <a href="#" class="text-primary hover:text-primary/80 px-3 py-2 font-medium transition-colors duration-200">首页</a>
+                        <a href="#" class="text-gray-600 hover:text-primary px-3 py-2 font-medium transition-colors duration-200">理赔指南</a>
+                        <a href="#" class="text-gray-600 hover:text-primary px-3 py-2 font-medium transition-colors duration-200">常见问题</a>
+                        <a href="#" class="text-gray-600 hover:text-primary px-3 py-2 font-medium transition-colors duration-200">联系我们</a>
+                    </nav>
+                </div>
+                <div class="flex items-center">
+                    <button class="hidden md:flex items-center text-gray-600 hover:text-primary mr-4 transition-colors duration-200">
+                        <i class="fa fa-question-circle mr-1"></i>
+                        <span>帮助</span>
+                    </button>
+                    <div class="relative">
+                        <button id="userMenuButton" class="flex items-center text-gray-600 hover:text-primary transition-colors duration-200">
+                            <div class="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <span class="ml-2 hidden md:block">客服中心</span>
+                            <i class="fa fa-angle-down ml-1 hidden md:block"></i>
+                        </button>
+                        <!-- 用户菜单 (默认隐藏) -->
+                        <div id="userMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">个人信息</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">历史记录</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">设置</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">退出登录</a>
+                        </div>
+                    </div>
+                    <button class="md:hidden ml-4 text-gray-600 hover:text-primary" id="mobileMenuButton">
+                        <i class="fa fa-bars text-xl"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-  
-</body>
-</html>
+        <!-- 移动端菜单 (默认隐藏) -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-primary bg-primary/10">首页</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50">理赔指南</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50">常见问题</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50">联系我们</a>
+            </div>
+            <div class="pt-4 pb-3 border-t border-gray-200">
+                <div class="flex items-center px-5">
+                    <div class="flex-shrink-0">
+                        <div class="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                            <i class="fa fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="ml-3">
+                        <div class="text-base font-medium text-gray-800">客服中心</div>
+                        <div class="text-sm font-medium text-gray-500">service@example.com</div>
+                    </div>
+                </div>
+                <div class="mt-3 px-2 space-y-1">
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50">个人信息</a>
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50">历史记录</a>
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50">设置</a>
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50">退出登录</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="flex-grow">
+        <!-- 英雄区域 -->
+        <section class="bg-gradient-to-r from-primary to-primary/80 text-white py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-10 md:mb-0">
+                        <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight text-shadow">
+                            车险理赔，<br>
+                            <span class="text-yellow-300">在线视频</span> 一键解决
+                        </h1>
+                        <p class="mt-6 text-lg md:text-xl text-white/90 max-w-xl">
+                            无需等待，无需奔波，通过视频连线即可完成车险理赔全流程，高效、便捷、省心。
+                        </p>
+                        <div class="mt-8 flex flex-wrap gap-4">
+                            <button id="startClaimBtn" class="bg-white text-primary px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                                立即申请理赔
+                            </button>
+                            <button class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-all duration-300">
+                                了解更多
+                            </button>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 relative">
+                        <div class="bg-white/10 backdrop-blur-md rounded-xl p-4 shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                            <img src="https://picsum.photos/id/180/600/400" alt="车险理赔示意图" class="rounded-lg w-full h-auto shadow-lg">
+                            <div class="absolute -bottom-5 -left-5 bg-white text-primary px-4 py-2 rounded-lg shadow-lg">
+                                <i class="fa fa-video-camera mr-2"></i>
+                                <span class="font-medium">视频连线</span>
+                            </div>
+                            <div class="absolute -top-5 -right-5 bg-white text-primary px-4 py-2 rounded-lg shadow-lg">
+                                <i class="fa fa-check-circle mr-2"></i>
+                                <span class="font-medium">快速理赔</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 功能介绍 -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-gray-800">
+                        智能视频理赔，简单三步完成
+                    </h2>
+                    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+                        我们的系统通过先进的视频技术和AI算法，帮助您快速完成理赔流程，减少等待时间
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 步骤1 -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <i class="fa fa-phone text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">视频连线</h3>
+                        <p class="text-gray-600">
+                            一键发起视频通话，专业理赔专员实时在线指导，解答您的疑问。
+                        </p>
+                    </div>
+
+                    <!-- 步骤2 -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <i class="fa fa-camera text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">拍照取证</h3>
+                        <p class="text-gray-600">
+                            按照专员指导拍摄事故现场、车辆损伤和相关证件，系统自动保存。
+                        </p>
+                    </div>
+
+                    <!-- 步骤3 -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <i class="fa fa-file-text text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">生成报告</h3>
+                        <p class="text-gray-600">
+                            系统自动生成查勘报告，智能识别损伤程度，快速核算理赔金额。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-8">平台核心优势</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-gray-50 rounded-lg p-5">
+                            <div class="flex items-center">
+                                <i class="fa fa-clock-o text-primary text-xl mr-3"></i>
+                                <h4 class="font-medium text-gray-800">省时高效</h4>
+                            </div>
+                            <p class="mt-2 text-gray-600 text-sm">
+                                省去传统理赔的繁琐流程，平均处理时间缩短80%
+                            </p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-5">
+                            <div class="flex items-center">
+                                <i class="fa fa-shield text-primary text-xl mr-3"></i>
+                                <h4 class="font-medium text-gray-800">专业保障</h4>
+                            </div>
+                            <p class="mt-2 text-gray-600 text-sm">
+                                资深理赔专员一对一服务，确保您的权益得到充分保障
+                            </p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-5">
+                            <div class="flex items-center">
+                                <i class="fa fa-calculator text-primary text-xl mr-3"></i>
+                                <h4 class="font-medium text-gray-800">智能评估</h4>
+                            </div>
+                            <p class="mt-2 text-gray-600 text-sm">
+                                AI算法精准评估损失，杜绝人为误差，公平公正
+                            </p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-5">
+                            <div class="flex items-center">
+                                <i class="fa fa-lock text-primary text-xl mr-3"></i>
+                                <h4 class="font-medium text-gray-800">数据安全</h4>
+                            </div>
+                            <p class="mt-2 text-gray-600 text-sm">
+                                端到端加密技术，保障您的个人和理赔数据安全
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 视频理赔平台主界面 (默认隐藏) -->
+        <section id="claimPlatform" class="hidden py-12 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden">
+                    <div class="flex flex-col lg:flex-row">
+                        <!-- 左侧视频区域 -->
+                        <div class="lg:w-2/3 bg-gray-900 relative">
+                            <div id="videoContainer" class="w-full h-[50vh] md:h-[60vh] lg:h-[70vh] relative">
+                                <!-- 视频元素 -->
+                                <div id="videoPlaceholder" class="absolute inset-0 flex items-center justify-center">
+                                    <div class="text-center text-white">
+                                        <i class="fa fa-video-camera text-6xl text-gray-600 mb-4"></i>
+                                        <p class="text-gray-400 text-lg">等待连接客服...</p>
+                                        <div class="mt-4 flex justify-center">
+                                            <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse mr-2"></div>
+                                            <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse mr-2"></div>
+                                            <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 实际视频元素 -->
+                                <div id="localVideoContainer" class="hidden absolute bottom-4 right-4 w-32 h-48 bg-black/50 rounded-lg overflow-hidden border-2 border-white shadow-lg">
+                                    <video id="localVideo" autoplay muted playsinline class="w-full h-full object-cover"></video>
+                                </div>
+                                
+                                <div id="remoteVideoContainer" class="hidden absolute inset-0">
+                                    <video id="remoteVideo" autoplay playsinline class="w-full h-full object-cover"></video>
+                                </div>
+                                
+                                <!-- 模拟视频流 (仅用于展示，实际使用时会被真实视频替换) -->
+                                <img id="simulatedVideo" src="https://picsum.photos/id/237/800/600" alt="模拟视频通话" class="hidden absolute inset-0 w-full h-full object-cover">
+                                
+                                <!-- 视频控制栏 -->
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 flex items-center justify-between">
+                                    <div class="text-white">
+                                        <span class="text-sm font-medium">理赔专员: 王师傅</span>
+                                        <span class="ml-3 text-xs bg-green-500 px-2 py-1 rounded-full">在线</span>
+                                    </div>
+                                    <div class="flex space-x-4">
+                                        <button id="muteBtn" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                            <i class="fa fa-microphone"></i>
+                                        </button>
+                                        <button id="cameraBtn" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                            <i class="fa fa-video-camera"></i>
+                                        </button>
+                                        <button id="snapshotBtn" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                            <i class="fa fa-camera"></i>
+                                        </button>
+                                        <button id="endCallBtn" class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center text-white hover:bg-red-600 transition-colors">
+                                            <i class="fa fa-phone fa-rotate-135"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 右侧控制面板 -->
+                        <div class="lg:w-1/3 p-6 border-t lg:border-t-0 lg:border-l border-gray-200">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-xl font-semibold text-gray-800">理赔处理</h3>
+                                <div class="text-sm text-gray-500">
+                                    <span id="claimStatus">步骤 1/4</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 理赔进度 -->
+                            <div class="mb-8">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-sm font-medium text-gray-600">理赔进度</span>
+                                    <span class="text-sm font-medium text-primary">25%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-primary h-2.5 rounded-full" style="width: 25%"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- 理赔步骤指示器 -->
+                            <div class="mb-8">
+                                <div class="flex justify-between">
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center">
+                                            <i class="fa fa-check"></i>
+                                        </div>
+                                        <span class="text-xs mt-1 text-primary font-medium">身份验证</span>
+                                    </div>
+                                    <div class="flex-1 mx-2 h-1 bg-gray-200 relative">
+                                        <div class="absolute inset-0 bg-primary" style="width: 0%"></div>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-8 h-8 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center">
+                                            2
+                                        </div>
+                                        <span class="text-xs mt-1 text-gray-500">事故取证</span>
+                                    </div>
+                                    <div class="flex-1 mx-2 h-1 bg-gray-200"></div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-8 h-8 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center">
+                                            3
+                                        </div>
+                                        <span class="text-xs mt-1 text-gray-500">损失评估</span>
+                                    </div>
+                                    <div class="flex-1 mx-2 h-1 bg-gray-200"></div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-8 h-8 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center">
+                                            4
+                                        </div>
+                                        <span class="text-xs mt-1 text-gray-500">生成报告</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 身份证OCR区域 -->
+                            <div id="ocrSection" class="mb-8">
+                                <h4 class="font-medium text-gray-800 mb-3">身份证OCR识别</h4>
+                                <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-primary transition-colors cursor-pointer" id="ocrUploadArea">
+                                    <i class="fa fa-id-card-o text-3xl text-gray-400 mb-2"></i>
+                                    <p class="text-sm text-gray-500">点击上传身份证照片或使用相机扫描</p>
+                                </div>
+                                <div class="mt-3 flex justify-between">
+                                    <span class="text-xs text-gray-500">支持JPG、PNG格式，大小不超过5MB</span>
+                                    <button class="text-xs text-primary hover:text-primary/80">
+                                        <i class="fa fa-question-circle mr-1"></i>帮助
+                                    </button>
+                                </div>
+                                
+                                <!-- OCR识别结果 (默认隐藏) -->
+                                <div id="ocrResult" class="hidden mt-4 p-4 bg-gray-50 rounded-lg">
+                                    <h5 class="font-medium text-gray-700 mb-2">识别结果</h5>
+                                    <div class="grid grid-cols-2 gap-2 text-sm">
+                                        <div>
+                                            <p class="text-gray-500">姓名</p>
+                                            <p class="font-medium">张三</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-500">性别</p>
+                                            <p class="font-medium">男</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-500">民族</p>
+                                            <p class="font-medium">汉</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-500">出生日期</p>
+                                            <p class="font-medium">1990-01-01</p>
+                                        </div>
+                                        <div class="col-span-2">
+                                            <p class="text-gray-500">地址</p>
+                                            <p class="font-medium">北京市朝阳区建国路88号</p>
+                                        </div>
+                                        <div class="col-span-2">
+                                            <p class="text-gray-500">身份证号</p>
+                                            <p class="font-medium">110105199001011234</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 flex justify-end">
+                                        <button id="confirmOcrBtn" class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full hover:bg-primary/20 transition-colors">
+                                            确认信息
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 备注区域 -->
+                            <div class="mb-8">
+                                <h4 class="font-medium text-gray-800 mb-3">添加备注</h4>
+                                <textarea id="notes" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors" placeholder="请输入事故相关信息..."></textarea>
+                                <div class="mt-2 flex justify-between items-center">
+                                    <span class="text-xs text-gray-500">最多输入500字</span>
+                                    <button id="saveNotesBtn" class="text-xs bg-primary text-white px-3 py-1 rounded-full hover:bg-primary/90 transition-colors">
+                                        保存备注
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- 保存的照片 -->
+                            <div id="savedPhotos" class="mb-8">
+                                <h4 class="font-medium text-gray-800 mb-3">已保存照片</h4>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <!-- 照片占位 -->
+                                    <div class="aspect-square bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 text-xs">
+                                        无照片
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 操作按钮 -->
+                            <div class="flex justify-between mt-8">
+                                <button id="backBtn" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
+                                    返回
+                                </button>
+                                <button id="nextStepBtn" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors" disabled>
+                                    下一步
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 查勘报告预览 (默认隐藏) -->
+        <section id="reportPreview" class="hidden py-12 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden">
+                    <div class="p-6 border-b border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-semibold text-gray-800">车险查勘报告</h3>
+                            <div class="flex space-x-3">
+                                <button class="text-gray-600 hover:text-primary transition-colors">
+                                    <i class="fa fa-download mr-1"></i>下载报告
+                                </button>
+                                <button class="text-gray-600 hover:text-primary transition-colors">
+                                    <i class="fa fa-print mr-1"></i>打印报告
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-sm text-gray-500">
+                            <span>报告编号: CL20250703001</span>
+                            <span class="mx-2">|</span>
+                            <span>生成时间: 2025-07-03 14:30:25</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- 报告左侧信息 -->
+                            <div class="md:col-span-2">
+                                <!-- 基本信息 -->
+                                <div class="mb-8">
+                                    <h4 class="text-lg font-medium text-gray-800 mb-4 pb-2 border-b border-gray-200">
+                                        <i class="fa fa-user-circle mr-2 text-primary"></i>报案人信息
+                                    </h4>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <p class="text-sm text-gray-500">姓名</p>
+                                            <p class="font-medium">张三</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500">联系电话</p>
+                                            <p class="font-medium">13800138000</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500">身份证号</p>
+                                            <p class="font-medium">110105199001011234</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500">报案时间</p>
+                                            <p class="font-medium">2025-07-03 14:00:00</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 事故信息 -->
+                                <div class="mb-8">
+                                    <h4 class="text-lg font-medium text-gray-800 mb-4 pb-2 border-b border-gray-200">
+                                        <i class="fa fa-car mr-2 text-primary"></i>事故信息
+                                    </h4>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <p class="text-sm text-gray-500">事故时间</p>
+                                            <p class="font-medium">2025-07-03 13:30:00</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500">事故地点</p>
+                                            <p class="font-medium">北京市朝阳区建国路</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500">事故类型</p>
+                                            <p class="font-medium">追尾事故</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500">车牌号</p>
+                                            <p class="font-medium">京A12345</p>
+                                        </div>
+                                        <div class="col-span-2">
+                                            <p class="text-sm text-gray-500">事故描述</p>
+                                            <p class="font-medium">在路口等待红灯时，被后方车辆追尾，造成后保险杠及后备箱损坏。无人员伤亡。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 损失评估 -->
+                                <div class="mb-8">
+                                    <h4 class="text-lg font-medium text-gray-800 mb-4 pb-2 border-b border-gray-200">
+                                        <i class="fa fa-calculator mr-2 text-primary"></i>损失评估
+                                    </h4>
+                                    <div>
+                                        <p class="text-sm text-gray-500 mb-2">车辆损坏情况</p>
+                                        <ul class="list-disc pl-5 text-sm space-y-1 mb-4">
+                                            <li>后保险杠破裂，需更换</li>
+                                            <li>后备箱轻微变形，需修复</li>
+                                            <li>后尾灯损坏，需更换</li>
+                                        </ul>
+                                        
+                                        <div class="grid grid-cols-2 gap-4 mb-4">
+                                            <div>
+                                                <p class="text-sm text-gray-500">预估维修费用</p>
+                                                <p class="font-medium text-red-600">¥5,200.00</p>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm text-gray-500">理赔金额</p>
+                                                <p class="font-medium text-green-600">¥5,000.00</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm">
+                                            <p class="font-medium text-yellow-800 mb-1">
+                                                <i class="fa fa-info-circle mr-1"></i>理赔说明
+                                            </p>
+                                            <p class="text-yellow-700">
+                                                根据您的保险条款，本次事故属于车损险责任范围，扣除200元免赔额后，实际理赔金额为5,000元。
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 查勘员备注 -->
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-800 mb-4 pb-2 border-b border-gray-200">
+                                        <i class="fa fa-sticky-note-o mr-2 text-primary"></i>查勘员备注
+                                    </h4>
+                                    <p class="font-medium">
+                                        现场照片清晰，事故经过属实，无酒驾、逃逸等违规行为。建议客户尽快到指定维修厂进行维修。
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- 报告右侧信息 -->
+                            <div>
+                                <!-- 照片附件 -->
+                                <div class="mb-8">
+                                    <h4 class="text-lg font-medium text-gray-800 mb-4 pb-2 border-b border-gray-200">
+                                        <i class="fa fa-camera mr-2 text-primary"></i>事故照片
+                                    </h4>
+                                    <div class="space-y-3">
+                                        <div class="aspect-video bg-gray-100 rounded-lg overflow-hidden">
+                                            <img src="https://picsum.photos/id/1071/400/300" alt="车辆后部损伤照片" class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="aspect-video bg-gray-100 rounded-lg overflow-hidden">
+                                            <img src="https://picsum.photos/id/1072/400/300" alt="车辆尾部细节照片" class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="aspect-video bg-gray-100 rounded-lg overflow-hidden">
+                                            <img src="https://picsum.photos/id/1073/400/300" alt="事故现场全景照片" class="w-full h-full object-cover">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 理赔进度 -->
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-800 mb-4 pb-2 border-b border-gray-200">
+                                        <i class="fa fa-clock-o mr-2 text-primary"></i>理赔进度
+                                    </h4>
+                                    <div class="space-y-4">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0 w-8">
+                                                <div class="w-2 h-2 bg-green-500 rounded-full mt-1.5"></div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-800">提交申请</p>
+                                                <p class="text-xs text-gray-500">2025-07-03 14:00</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <div class="flex-shrink-0 w-8">
+                                                <div class="w-2 h-2 bg-green-500 rounded-full mt-1.5"></div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-800">视频查勘</p>
+                                                <p class="text-xs text-gray-500">2025-07-03 14:15</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <div class="flex-shrink-0 w-8">
+                                                <div class="w-2 h-2 bg-green-500 rounded-full mt-1.5"></div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-800">损失评估</p>
+                                                <p class="text-xs text-gray-500">2025-07-03 14:25</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <div class="flex-shrink-0 w-8">
+                                                <div class="w-2 h-2 bg-primary rounded-full mt-1.5"></div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-primary">生成报告</p>
+                                                <p class="text-xs text-gray-500">2025-07-03 14:30</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex opacity-50">
+                                            <div class="flex-shrink-0 w-8">
+                                                <div class="w-2 h-2 bg-gray-300 rounded-full mt-1.5"></div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-600">审核通过</p>
+                                                <p class="text-xs text-gray-500">待处理</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex opacity-50">
+                                            <div class="flex-shrink-0 w-8">
+                                                <div class="w-2 h-2 bg-gray-300 rounded-full mt-1.5"></div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-600">赔款支付</p>
+                                                <p class="text-xs text-gray-500">待处理</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 border-t border-gray-200 bg-gray-50 flex justify-between">
+                        <button id="backToClaimBtn" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors">
+                            返回理赔
+                        </button>
+                        <button id="submitReportBtn" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+                            提交理赔报告
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 成功提交模态框 (默认隐藏) -->
+        <div id="successModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 transform transition-all">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-check text-green-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">理赔申请已提交成功！</h3>
+                    <p class="text-gray-600 mb-6">
+                        您的理赔申请已成功提交，我们将在1-3个工作日内进行审核处理，赔款将尽快支付到您的账户。
+                    </p>
+                    <div class="flex justify-center">
+                        <button id="closeSuccessModalBtn" class="px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+                            完成
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fa fa-car text-primary text-2xl mr-2"></i>
+                        <span class="font-bold text-xl">车险理赔通</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        专业、高效、便捷的车险在线视频理赔平台，让理赔变得简单。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-weibo text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-phone text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">快速链接</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">理赔指南</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">常见问题</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">帮助中心</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">如何申请理赔</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">理赔流程</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">理赔常见问题</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">保险条款查询</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">联系我们</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fa fa-map-marker text-primary mr-2"></i>
+                            <span class="text-gray-400">北京市朝阳区建国路88号</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone text-primary mr-2"></i>
+                            <span class="text-gray-400">400-888-8888</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope text-primary mr-2"></i>
+                            <span class="text-gray-400">service@example.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-clock-o text-primary mr-2"></i>
+                            <span class="text-gray-400">周一至周日 8:00-20:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2025 车险理赔通. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // DOM元素
+        const navbar = document.getElementById('navbar');
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const userMenuButton = document.getElementById('userMenuButton');
+        const userMenu = document.getElementById('userMenu');
+        const startClaimBtn = document.getElementById('startClaimBtn');
+        const claimPlatform = document.getElementById('claimPlatform');
+        const backBtn = document.getElementById('backBtn');
+        const nextStepBtn = document.getElementById('nextStepBtn');
+        const claimStatus = document.getElementById('claimStatus');
+        const ocrUploadArea = document.getElementById('ocrUploadArea');
+        const ocrResult = document.getElementById('ocrResult');
+        const snapshotBtn = document.getElementById('snapshotBtn');
+        const savedPhotos = document.getElementById('savedPhotos');
+        const reportPreview = document.getElementById('reportPreview');
+        const backToClaimBtn = document.getElementById('backToClaimBtn');
+        const submitReportBtn = document.getElementById('submitReportBtn');
+        const successModal = document.getElementById('successModal');
+        const closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
+        const simulatedVideo = document.getElementById('simulatedVideo');
+        const saveNotesBtn = document.getElementById('saveNotesBtn');
+        const notes = document.getElementById('notes');
+        const confirmOcrBtn = document.getElementById('confirmOcrBtn');
+        const videoPlaceholder = document.getElementById('videoPlaceholder');
+        const localVideoContainer = document.getElementById('localVideoContainer');
+        const remoteVideoContainer = document.getElementById('remoteVideoContainer');
+        const localVideo = document.getElementById('localVideo');
+        const remoteVideo = document.getElementById('remoteVideo');
+        const muteBtn = document.getElementById('muteBtn');
+        const cameraBtn = document.getElementById('cameraBtn');
+        const endCallBtn = document.getElementById('endCallBtn');
+        
+        // 当前步骤
+        let currentStep = 1;
+        let totalSteps = 4;
+        let isOcrConfirmed = false;
+        let isMuted = false;
+        let isCameraOff = false;
+        let localStream = null;
+        
+        // 页面滚动效果
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('bg-white/95', 'backdrop-blur-sm');
+                navbar.classList.remove('bg-white');
+            } else {
+                navbar.classList.remove('bg-white/95', 'backdrop-blur-sm');
+                navbar.classList.add('bg-white');
+            }
+        });
+        
+        // 移动端菜单切换
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 用户菜单切换
+        userMenuButton.addEventListener('click', () => {
+            userMenu.classList.toggle('hidden');
+        });
+        
+        // 点击页面其他地方关闭下拉菜单
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+            
+            if (!userMenuButton.contains(e.target) && !userMenu.contains(e.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+        
+        // 开始理赔
+        startClaimBtn.addEventListener('click', () => {
+            // 滚动到顶部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // 隐藏首页内容，显示理赔平台
+            document.querySelector('main').children[1].classList.add('hidden');
+            document.querySelector('main').children[2].classList.add('hidden');
+            claimPlatform.classList.remove('hidden');
+            
+            // 初始化视频通话
+            initVideoCall();
+        });
+        
+        // 返回首页
+        backBtn.addEventListener('click', () => {
+            claimPlatform.classList.add('hidden');
+            document.querySelector('main').children[1].classList.remove('hidden');
+            document.querySelector('main').children[2].classList.remove('hidden');
+            
+            // 结束视频通话
+            endVideoCall();
+        });
+        
+        // 下一步按钮
+        nextStepBtn.addEventListener('click', () => {
+            if (currentStep < totalSteps) {
+                // 检查当前步骤是否完成
+                if (currentStep === 1 && !isOcrConfirmed) {
+                    alert('请先完成身份证OCR识别并确认信息');
+                    return;
+                }
+                
+                if (currentStep === 2) {
+                    // 检查是否有照片
+                    const photos = savedPhotos.querySelectorAll('img');
+                    if (photos.length === 0) {
+                        alert('请至少拍摄一张事故照片');
+                        return;
+                    }
+                }
+                
+                currentStep++;
+                updateStepUI();
+                
+                if (currentStep === 4) {
+                    // 显示报告预览
+                    claimPlatform.classList.add('hidden');
+                    reportPreview.classList.remove('hidden');
+                }
+            }
+        });
+        
+        // 返回理赔
+        backToClaimBtn.addEventListener('click', () => {
+            reportPreview.classList.add('hidden');
+            claimPlatform.classList.remove('hidden');
+            currentStep = 3;
+            updateStepUI();
+        });
+        
+        // 提交报告
+        submitReportBtn.addEventListener('click', () => {
+            successModal.classList.remove('hidden');
+        });
+        
+        // 关闭成功模态框
+        closeSuccessModalBtn.addEventListener('click', () => {
+            successModal.classList.add('hidden');
+            reportPreview.classList.add('hidden');
+            document.querySelector('main').children[1].classList.remove('hidden');
+            document.querySelector('main').children[2].classList.remove('hidden');
+            currentStep = 1;
+            isOcrConfirmed = false;
+            updateStepUI();
+        });
+        
+        // OCR上传区域点击事件
+        ocrUploadArea.addEventListener('click', () => {
+            // 模拟OCR上传和识别
+            ocrUploadArea.classList.add('hidden');
+            ocrResult.classList.remove('hidden');
+            
+            // 模拟OCR动画
+            const ocrArea = document.querySelector('#ocrResult');
+            ocrArea.classList.add('animate-pulse');
+            setTimeout(() => {
+                ocrArea.classList.remove('animate-pulse');
+            }, 2000);
+        });
+        
+        // 确认OCR信息
+        confirmOcrBtn.addEventListener('click', () => {
+            isOcrConfirmed = true;
+            confirmOcrBtn.innerHTML = '<i class="fa fa-check mr-1"></i>已确认';
+            confirmOcrBtn.classList.remove('bg-primary/10', 'text-primary');
+            confirmOcrBtn.classList.add('bg-green-100', 'text-green-700');
+            
+            // 启用下一步按钮
+            if (currentStep === 1) {
+                nextStepBtn.disabled = false;
+                nextStepBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        });
+        
+        // 拍照按钮
+        snapshotBtn.addEventListener('click', () => {
+            if (!localStream) {
+                alert('视频尚未连接，请等待视频连接完成后再拍照');
+                return;
+            }
+            
+            // 创建画布
+            const canvas = document.createElement('canvas');
+            canvas.width = localVideo.videoWidth;
+            canvas.height = localVideo.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(localVideo, 0, 0, canvas.width, canvas.height);
+            
+            // 转换为图片URL
+            const photoUrl = canvas.toDataURL('image/jpeg');
+            
+            // 添加照片到已保存区域
+            const photoContainer = document.createElement('div');
+            photoContainer.className = 'aspect-square bg-gray-100 rounded-lg overflow-hidden relative';
+            photoContainer.innerHTML = `
+                <img src="${photoUrl}" alt="事故照片" class="w-full h-full object-cover">
+                <button class="absolute top-1 right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white text-xs opacity-80 hover:opacity-100 transition-opacity">
+                    <i class="fa fa-times"></i>
+                </button>
+            `;
+            
+            // 移除"无照片"提示
+            const noPhotoPlaceholder = savedPhotos.querySelector('.aspect-square.bg-gray-100');
+            if (noPhotoPlaceholder) {
+                savedPhotos.querySelector('div').removeChild(noPhotoPlaceholder);
+            }
+            
+            // 添加新照片
+            savedPhotos.querySelector('div').appendChild(photoContainer);
+            
+            // 为删除按钮添加事件
+            const deleteBtn = photoContainer.querySelector('button');
+            deleteBtn.addEventListener('click', () => {
+                savedPhotos.querySelector('div').removeChild(photoContainer);
+                
+                // 如果没有照片了，显示"无照片"提示
+                if (savedPhotos.querySelector('div').children.length === 0) {
+                    savedPhotos.querySelector('div').innerHTML = `
+                        <div class="aspect-square bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 text-xs">
+                            无照片
+                        </div>
+                    `;
+                }
+            });
+            
+            // 如果是在第二步且是第一张照片，启用下一步按钮
+            if (currentStep === 2 && savedPhotos.querySelectorAll('img').length === 1) {
+                nextStepBtn.disabled = false;
+                nextStepBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        });
+        
+        // 保存备注
+        saveNotesBtn.addEventListener('click', () => {
+            if (notes.value.trim() !== '') {
+                saveNotesBtn.innerHTML = '<i class="fa fa-check mr-1"></i>已保存';
+                saveNotesBtn.classList.remove('bg-primary');
+                saveNotesBtn.classList.add('bg-green-500');
+                
+                setTimeout(() => {
+                    saveNotesBtn.innerHTML = '保存备注';
+                    saveNotesBtn.classList.remove('bg-green-500');
+                    saveNotesBtn.classList.add('bg-primary');
+                }, 2000);
+            }
+        });
+        
+        // 更新步骤UI
+        function updateStepUI() {
+            claimStatus.textContent = `步骤 ${currentStep}/${totalSteps}`;
+            
+            // 更新进度条
+            const progressBar = document.querySelector('.bg-primary.h-2.5.rounded-full');
+            progressBar.style.width
