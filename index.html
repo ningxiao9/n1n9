@@ -266,7 +266,7 @@
                         <div class="lg:w-2/3 bg-gray-900 relative">
                             <div id="videoContainer" class="w-full h-[50vh] md:h-[60vh] lg:h-[70vh] relative">
                                 <!-- 视频元素 -->
-                                <div id="videoPlaceholder" class="absolute inset-0 flex items-center justify-center">
+                                <div class="absolute inset-0 flex items-center justify-center">
                                     <div class="text-center text-white">
                                         <i class="fa fa-video-camera text-6xl text-gray-600 mb-4"></i>
                                         <p class="text-gray-400 text-lg">等待连接客服...</p>
@@ -278,16 +278,7 @@
                                     </div>
                                 </div>
                                 
-                                <!-- 实际视频元素 -->
-                                <div id="localVideoContainer" class="hidden absolute bottom-4 right-4 w-32 h-48 bg-black/50 rounded-lg overflow-hidden border-2 border-white shadow-lg">
-                                    <video id="localVideo" autoplay muted playsinline class="w-full h-full object-cover"></video>
-                                </div>
-                                
-                                <div id="remoteVideoContainer" class="hidden absolute inset-0">
-                                    <video id="remoteVideo" autoplay playsinline class="w-full h-full object-cover"></video>
-                                </div>
-                                
-                                <!-- 模拟视频流 (仅用于展示，实际使用时会被真实视频替换) -->
+                                <!-- 模拟视频流 -->
                                 <img id="simulatedVideo" src="https://picsum.photos/id/237/800/600" alt="模拟视频通话" class="hidden absolute inset-0 w-full h-full object-cover">
                                 
                                 <!-- 视频控制栏 -->
@@ -413,7 +404,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-3 flex justify-end">
-                                        <button id="confirmOcrBtn" class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full hover:bg-primary/20 transition-colors">
+                                        <button class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full hover:bg-primary/20 transition-colors">
                                             确认信息
                                         </button>
                                     </div>
@@ -448,7 +439,7 @@
                                 <button id="backBtn" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
                                     返回
                                 </button>
-                                <button id="nextStepBtn" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors" disabled>
+                                <button id="nextStepBtn" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
                                     下一步
                                 </button>
                             </div>
@@ -799,23 +790,10 @@
         const simulatedVideo = document.getElementById('simulatedVideo');
         const saveNotesBtn = document.getElementById('saveNotesBtn');
         const notes = document.getElementById('notes');
-        const confirmOcrBtn = document.getElementById('confirmOcrBtn');
-        const videoPlaceholder = document.getElementById('videoPlaceholder');
-        const localVideoContainer = document.getElementById('localVideoContainer');
-        const remoteVideoContainer = document.getElementById('remoteVideoContainer');
-        const localVideo = document.getElementById('localVideo');
-        const remoteVideo = document.getElementById('remoteVideo');
-        const muteBtn = document.getElementById('muteBtn');
-        const cameraBtn = document.getElementById('cameraBtn');
-        const endCallBtn = document.getElementById('endCallBtn');
         
         // 当前步骤
         let currentStep = 1;
         let totalSteps = 4;
-        let isOcrConfirmed = false;
-        let isMuted = false;
-        let isCameraOff = false;
-        let localStream = null;
         
         // 页面滚动效果
         window.addEventListener('scroll', () => {
@@ -859,8 +837,10 @@
             document.querySelector('main').children[2].classList.add('hidden');
             claimPlatform.classList.remove('hidden');
             
-            // 初始化视频通话
-            initVideoCall();
+            // 模拟视频连接
+            setTimeout(() => {
+                simulatedVideo.classList.remove('hidden');
+            }, 2000);
         });
         
         // 返回首页
@@ -868,29 +848,11 @@
             claimPlatform.classList.add('hidden');
             document.querySelector('main').children[1].classList.remove('hidden');
             document.querySelector('main').children[2].classList.remove('hidden');
-            
-            // 结束视频通话
-            endVideoCall();
         });
         
         // 下一步按钮
         nextStepBtn.addEventListener('click', () => {
             if (currentStep < totalSteps) {
-                // 检查当前步骤是否完成
-                if (currentStep === 1 && !isOcrConfirmed) {
-                    alert('请先完成身份证OCR识别并确认信息');
-                    return;
-                }
-                
-                if (currentStep === 2) {
-                    // 检查是否有照片
-                    const photos = savedPhotos.querySelectorAll('img');
-                    if (photos.length === 0) {
-                        alert('请至少拍摄一张事故照片');
-                        return;
-                    }
-                }
-                
                 currentStep++;
                 updateStepUI();
                 
@@ -922,8 +884,6 @@
             document.querySelector('main').children[1].classList.remove('hidden');
             document.querySelector('main').children[2].classList.remove('hidden');
             currentStep = 1;
-            isOcrConfirmed = false;
-            updateStepUI();
         });
         
         // OCR上传区域点击事件
@@ -940,36 +900,11 @@
             }, 2000);
         });
         
-        // 确认OCR信息
-        confirmOcrBtn.addEventListener('click', () => {
-            isOcrConfirmed = true;
-            confirmOcrBtn.innerHTML = '<i class="fa fa-check mr-1"></i>已确认';
-            confirmOcrBtn.classList.remove('bg-primary/10', 'text-primary');
-            confirmOcrBtn.classList.add('bg-green-100', 'text-green-700');
-            
-            // 启用下一步按钮
-            if (currentStep === 1) {
-                nextStepBtn.disabled = false;
-                nextStepBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-            }
-        });
-        
         // 拍照按钮
         snapshotBtn.addEventListener('click', () => {
-            if (!localStream) {
-                alert('视频尚未连接，请等待视频连接完成后再拍照');
-                return;
-            }
-            
-            // 创建画布
-            const canvas = document.createElement('canvas');
-            canvas.width = localVideo.videoWidth;
-            canvas.height = localVideo.videoHeight;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(localVideo, 0, 0, canvas.width, canvas.height);
-            
-            // 转换为图片URL
-            const photoUrl = canvas.toDataURL('image/jpeg');
+            // 模拟拍照
+            const randomId = Math.floor(Math.random() * 1000);
+            const photoUrl = `https://picsum.photos/id/${randomId}/200/200`;
             
             // 添加照片到已保存区域
             const photoContainer = document.createElement('div');
@@ -1004,12 +939,6 @@
                     `;
                 }
             });
-            
-            // 如果是在第二步且是第一张照片，启用下一步按钮
-            if (currentStep === 2 && savedPhotos.querySelectorAll('img').length === 1) {
-                nextStepBtn.disabled = false;
-                nextStepBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-            }
         });
         
         // 保存备注
@@ -1033,4 +962,42 @@
             
             // 更新进度条
             const progressBar = document.querySelector('.bg-primary.h-2.5.rounded-full');
-            progressBar.style.width
+            progressBar.style.width = `${(currentStep / totalSteps) * 100}%`;
+            
+            // 更新步骤指示器
+            const stepIndicators = document.querySelectorAll('.flex-col.items-center');
+            stepIndicators.forEach((indicator, index) => {
+                const circle = indicator.querySelector('div');
+                const text = indicator.querySelector('span');
+                
+                if (index < currentStep - 1) {
+                    // 已完成步骤
+                    circle.className = 'w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center';
+                    circle.innerHTML = '<i class="fa fa-check"></i>';
+                    text.className = 'text-xs mt-1 text-primary font-medium';
+                } else if (index === currentStep - 1) {
+                    // 当前步骤
+                    circle.className = 'w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center';
+                    circle.textContent = currentStep;
+                    text.className = 'text-xs mt-1 text-primary font-medium';
+                } else {
+                    // 未完成步骤
+                    circle.className = 'w-8 h-8 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center';
+                    circle.textContent = index + 1;
+                    text.className = 'text-xs mt-1 text-gray-500';
+                }
+            });
+            
+            // 更新连接线
+            const lines = document.querySelectorAll('.flex-1.mx-2.h-1.bg-gray-200');
+            lines.forEach((line, index) => {
+                if (index < currentStep - 1) {
+                    line.innerHTML = '<div class="absolute inset-0 bg-primary"></div>';
+                } else {
+                    line.innerHTML = '';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
